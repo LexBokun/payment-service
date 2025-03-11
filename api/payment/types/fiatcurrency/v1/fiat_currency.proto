@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package payment.types.fiatcurrency.v1;
+
+option go_package = "protos/pkg/api/payment/types/fiatcurrency/v1";
+
+// Список доступных фиатных валют(RUB)
+enum FiatCurrency {
+  CURRENCY_FIAT_UNSPECIFIED = 0;
+  CURRENCY_RUB = 1;
+}

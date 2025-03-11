@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package payment.requests.v1;
+
+option go_package = "protos/pkg/api/payment/requests/v1";
+
+// Запрос на получение данных о всех платежах пользователя
+message ListPaymentsRequest {
+  int64 limit = 1;   // Количество записей на странице
+  string cursor = 2; // Указатель на последний платеж
+}

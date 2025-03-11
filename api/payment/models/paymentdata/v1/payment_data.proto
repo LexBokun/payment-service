@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package payment.models.paymentdata.v1;
+
+import "google/type/decimal.proto";
+import "api/payment/types/cryptocurrency/v1/crypto_currency.proto";
+import "api/payment/types/paymentmethod/v1/payment_method.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "protos/pkg/api/payment/models/v1";
+
+// Общее сообщение для всех платежных данных
+// Это все данные которые передаются при создание платежа
+message PaymentData {
+  int64 user_id = 1;
+  google.type.Decimal amount = 2;
+  payment.types.cryptocurrency.v1.CryptoCurrency crypto_currency = 3;    // "BTC", "ETH", "USDT"
+  string crypto_address = 4;                                             // Адрес крипто-кошелька
+  payment.types.paymentmethod.v1.PaymentMethod payment_method = 5;       // способ оплаты (ЮMoney, карта)
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}

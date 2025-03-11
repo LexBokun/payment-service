@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package payment.types.paymentmethod.v1;
+
+option go_package = "protos/pkg/api/payment/types/paymentmethod/v1";
+
+// Методы оплаты (Юmoney, карта, ...)
+enum PaymentMethod {
+  METHOD_PAYMENT_UNSPECIFIED = 0; // По умолчанию (не указано)
+  METHOD_YOOMONEY_WALLET = 1; // Кошелек ЮMoney (PC)
+  METHOD_BANK_CARD = 2; // Банковская карта (AC)
+}

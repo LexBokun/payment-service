@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package payment.types.cryptocurrency.v1;
+
+option go_package = "protos/pkg/api/payment/types/cryptocurrency/v1";
+
+// TODO: ДОБАВИТЬ КРИПТОВАЛЮТЫ/СДЕЛАТЬ АВТОМАТИЧЕСКОЕ ПОДТЯГИВАНИЕ
+// Список доступных криптовалют(BTC, TON, ...)
+enum CryptoCurrency {
+  CURRENCY_CRYPTO_UNSPECIFIED = 0;
+  CURRENCY_BTC = 1;
+  CURRENCY_TON = 2;
+  CURRENCY_USDT = 3;
+}

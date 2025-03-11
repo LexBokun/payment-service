@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package payment.responses.v1;
+
+import "api/payment/types/paymentstatus/v1/payment_status.proto";
+import "api/payment/models/paymentdata/v1/payment_data.proto";
+
+option go_package = "protos/pkg/api/payment/responses/v1";
+
+// Получение данных о платежной транзакции по id
+message PaymentResponse {
+  string payment_id = 1;                                            // Уникальный идентификатор платежа
+  payment.models.paymentdata.v1.PaymentData payment_data = 2;       // Встраиваем общую структуру для данных платежа
+  payment.types.paymentstatus.v1.PaymentStatus payment_status = 3;  // Текущий статус платежа
+}

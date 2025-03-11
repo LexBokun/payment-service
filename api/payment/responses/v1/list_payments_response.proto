@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package payment.responses.v1;
+
+import "api/payment/responses/v1/payment_response.proto";
+
+option go_package = "protos/pkg/api/payment/responses/v1";
+
+// Возвращает список платежей с пагинацией(cursor-based)
+message ListPaymentsResponse {
+  repeated payment.responses.v1.PaymentResponse payments = 1; // Список платежей
+  string next_cursor = 2;                                     // Курсор для следующей страницы (если он есть)
+}

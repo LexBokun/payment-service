@@ -4,16 +4,17 @@ package payment.service.v1;
 
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
-import "api/payment/requests/v1/create_payment_request.proto";
-import "api/payment/requests/v1/get_payment_request.proto";
-import "api/payment/responses/v1/payment_response.proto";
-import "api/payment/requests/v1/list_payments_request.proto";
-import "api/payment/responses/v1/list_payments_response.proto";
+import "api/payment/service/v1/requests/create_payment_request.proto";
+import "api/payment/service/v1/responses/create_payment_response.proto";
+import "api/payment/service/v1/requests/get_payment_request.proto";
+import "api/payment/service/v1/responses/get_payment_response.proto";
+import "api/payment/service/v1/requests/list_payments_request.proto";
+import "api/payment/service/v1/responses/list_payments_response.proto";
 
-option go_package = "protos/pkg/api/payment/service/v1";
+option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/service/v1";
 
 service PaymentService {
-  rpc Create(payment.requests.v1.CreateRequest) returns (payment.responses.v1.PaymentResponse) {
+  rpc Create(payment.service.v1.requests.CreateRequest) returns (payment.service.v1.responses.CreateResponse) {
     option (google.api.http) = {post: "/payment/v1/create" body: "*"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       tags: "payment"
@@ -22,7 +23,7 @@ service PaymentService {
     };
   }
 
-  rpc Get(payment.requests.v1.GetPaymentRequest) returns (payment.responses.v1.PaymentResponse) {
+  rpc Get(payment.service.v1.requests.GetRequest) returns (payment.service.v1.responses.GetResponse) {
     option (google.api.http) = {get: "/payment/v1/{id}"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       tags: "payment"
@@ -31,7 +32,7 @@ service PaymentService {
     };
   }
 
-  rpc List(payment.requests.v1.ListPaymentsRequest) returns (payment.responses.v1.ListPaymentsResponse) {
+  rpc List(payment.service.v1.requests.ListRequest) returns (payment.service.v1.responses.ListResponse) {
     option (google.api.http) = {get: "/payment/v1/list"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       tags: "payment"

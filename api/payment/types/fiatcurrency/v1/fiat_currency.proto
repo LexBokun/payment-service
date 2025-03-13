@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package payment.types.fiatcurrency.v1;
 
-option go_package = "protos/pkg/api/payment/types/fiatcurrency/v1";
+option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/types/fiatcurrency/v1";
 
 // Список доступных фиатных валют(RUB)
-enum FiatCurrency {
+enum Currency {
   CURRENCY_FIAT_UNSPECIFIED = 0;
   CURRENCY_RUB = 1;
 }

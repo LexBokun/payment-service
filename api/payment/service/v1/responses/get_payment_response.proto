@@ -1,14 +1,14 @@
 syntax = "proto3";
 
-package payment.responses.v1;
+package payment.service.v1.responses;
 
 import "api/payment/types/paymentstatus/v1/payment_status.proto";
-import "api/payment/models/paymentdata/v1/payment_data.proto";
+import "api/payment/models/paymentdata/v1/payment_transaction.proto";
 
-option go_package = "protos/pkg/api/payment/responses/v1";
+option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/service/v1/responses";
 
 // Получение данных о платежной транзакции по id
-message PaymentResponse {
+message GetResponse {
   string payment_id = 1;                                            // Уникальный идентификатор платежа
   payment.models.paymentdata.v1.PaymentData payment_data = 2;       // Встраиваем общую структуру для данных платежа
   payment.types.paymentstatus.v1.PaymentStatus payment_status = 3;  // Текущий статус платежа

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package payment.service.v1.responses;
+
+option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/service/v1/responses";
+
+message CreateResponse {
+  string payment_id = 1; // Уникальный идентификатор платежа
+}

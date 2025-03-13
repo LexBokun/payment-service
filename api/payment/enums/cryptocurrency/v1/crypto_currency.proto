@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package payment.types.cryptocurrency.v1;
+package payment.enums.cryptocurrency.v1;
 
-option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/types/cryptocurrency/v1";
+option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/enums/cryptocurrency/v1";
 
 // TODO: ДОБАВИТЬ КРИПТОВАЛЮТЫ/СДЕЛАТЬ АВТОМАТИЧЕСКОЕ ПОДТЯГИВАНИЕ
 // Список доступных криптовалют(BTC, TON, ...)

@@ -4,13 +4,15 @@ package payment.models.transaction.v1;
 
 import "google/protobuf/timestamp.proto";
 import "api/payment/models/transaction/v1/money.proto";
+import "api/types/money/v1/money.proto";
 
 option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/models/v1";
 
 // Операция списания или зачисления
 message Operation {
   string account = 1;                       // Реквизит: номер карты или адрес крипто-кошелька
-  Money money = 2;
-  google.protobuf.Timestamp created_at = 3;
-  google.protobuf.Timestamp updated_at = 4;
+  types.money.v1.Money amount_from = 2;
+  types.money.v1.Money amount_to = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
 }

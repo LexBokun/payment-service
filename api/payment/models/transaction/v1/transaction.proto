@@ -12,5 +12,4 @@ message Transaction {
   Operation amount_from = 1;                   // Операция списания (например, списание с yoomoney)
   Operation amount_to = 2;                     // Операция зачисления (например, начисление на крипто-кошелек)
   google.protobuf.Timestamp created_at = 3;
-  google.protobuf.Timestamp updated_at = 4;
 }

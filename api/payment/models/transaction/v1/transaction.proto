@@ -2,22 +2,15 @@ syntax = "proto3";
 
 package payment.models.transaction.v1;
 
-import "google/type/decimal.proto";
-import "api/payment/enums/cryptocurrency/v1/crypto_currency.proto";
-import "api/payment/enums/paymentmethod/v1/payment_method.proto";
 import "google/protobuf/timestamp.proto";
+import "api/payment/models/transaction/v1/operation.proto";
 
 option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/models/v1";
 
-// Общее сообщение для всех платежных данных
-// Это все данные которые передаются при создание платежа
+// Обменная транзакция, включающая списание и зачисление
 message Transaction {
-  int64 user_id = 1;
-  google.type.Decimal amount = 2;
-  google.type.Decimal amount_fee = 3;
-  payment.enums.cryptocurrency.v1.Currency crypto_currency = 4;   // "BTC", "ETH", "USDT"
-  string crypto_address = 6;                                      // Адрес крипто-кошелька
-  payment.enums.paymentmethod.v1.Method payment_method = 7;       // способ оплаты (ЮMoney, карта)
-  google.protobuf.Timestamp created_at = 8;
-  google.protobuf.Timestamp updated_at = 9;
+  Operation amount_from = 1;                   // Операция списания (например, списание с yoomoney)
+  Operation amount_to = 2;                     // Операция зачисления (например, начисление на крипто-кошелек)
+  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp updated_at = 4;
 }

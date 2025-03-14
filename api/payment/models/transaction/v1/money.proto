@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package payment.models.transaction.v1;
+
+import "google/type/decimal.proto";
+import "api/payment/enums/cryptocurrency/v1/crypto_currency.proto";
+import "api/payment/enums/fiatcurrency/v1/fiat_currency.proto";
+
+option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/models/v1";
+
+// Универсальное представление денежек
+message Money {
+  google.type.Decimal amount = 1;
+  google.type.Decimal fee = 2;      // Коммисия
+
+  oneof currency {
+    payment.enums.cryptocurrency.v1.Currency crypto = 3;  //BTC, TON ...
+    payment.enums.fiatcurrency.v1.Currency fiat = 4;      // RUB, ...
+  }
+}

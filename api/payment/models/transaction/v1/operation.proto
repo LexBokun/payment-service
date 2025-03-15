@@ -3,7 +3,6 @@ syntax = "proto3";
 package payment.models.transaction.v1;
 
 import "google/protobuf/timestamp.proto";
-import "api/payment/models/transaction/v1/money.proto";
 import "api/types/money/v1/money.proto";
 
 option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/models/v1";

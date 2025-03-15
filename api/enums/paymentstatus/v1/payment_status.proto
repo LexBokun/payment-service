@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package payment.enums.paymentstatus.v1;
+package enums.paymentstatus.v1;
 
-option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/enums/paymentstatus/v1";
+option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/enums/paymentstatus/v1";
 
 // Статус оплаты(PENDING, SUCCESS, ...)
 enum Status {

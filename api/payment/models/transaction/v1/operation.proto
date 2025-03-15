@@ -10,9 +10,9 @@ option go_package = "github.com/LexBokun/yoomoney-to-crypto/pkg/api/payment/mode
 
 // Операция списания или зачисления
 message Operation {
-  string account = 1;                       // Реквизит: номер карты или адрес крипто-кошелька
-  types.money.v1.Money amount_from = 2;
-  types.money.v1.Money amount_to = 3;
+  string account = 1;                        // Реквизит: номер карты или адрес крипто-кошелька
+  types.money.v1.Money amount = 2;           // Основная сумма операции
+  types.money.v1.Money fee = 3;              // Комиссия (если есть)
   google.protobuf.Timestamp created_at = 4;
   google.protobuf.Timestamp updated_at = 5;
 }

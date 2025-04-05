@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package enums.paymentmethod.v1;
+
+option go_package = "github.com/LexBokun/payment-service/pkg/api/enums/paymentmethod/v1";
+
+// Методы оплаты (Юmoney, карта, ...)
+enum Method {
+  METHOD_PAYMENT_UNSPECIFIED = 0; // По умолчанию (не указано)
+  METHOD_YOOMONEY_WALLET = 1; // Кошелек ЮMoney (PC)
+  METHOD_BANK_CARD = 2; // Банковская карта (AC)
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package enums.cryptocurrency.v1;
+
+option go_package = "github.com/LexBokun/payment-service/pkg/api/enums/cryptocurrency/v1";
+
+// TODO: ДОБАВИТЬ КРИПТОВАЛЮТЫ/СДЕЛАТЬ АВТОМАТИЧЕСКОЕ ПОДТЯГИВАНИЕ
+// Список доступных криптовалют(BTC, TON, ...)
+enum Currency {
+  CURRENCY_CRYPTO_UNSPECIFIED = 0;
+  CURRENCY_BTC = 1;
+  CURRENCY_TON = 2;
+  CURRENCY_USDT = 3;
+}

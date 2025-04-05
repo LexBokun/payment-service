@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package enums.paymentstatus.v1;
+
+option go_package = "github.com/LexBokun/payment-service/pkg/api/enums/paymentstatus/v1";
+
+// Статус оплаты(PENDING, SUCCESS, ...)
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_CREATED = 1;
+  STATUS_PENDING = 2;
+  STATUS_SUCCESS = 3;
+  STATUS_FAILED = 4;
+  STATUS_UNKNOWN = 5;
+}

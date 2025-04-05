@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package payment.service.v1.requests;
+
+option go_package = "github.com/LexBokun/payment-service/pkg/api/payment/service/v1/requests";
+
+// Запрос на получение данных о всех платежах пользователя
+message ListRequest {
+  int64 limit = 1;   // Количество записей на странице
+  string cursor = 2; // Указатель на последний платеж
+}

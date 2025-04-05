@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package enums.fiatcurrency.v1;
+
+option go_package = "github.com/LexBokun/payment-service/pkg/api/enums/fiatcurrency/v1";
+
+// Список доступных фиатных валют(RUB)
+enum Currency {
+  CURRENCY_FIAT_UNSPECIFIED = 0;
+  CURRENCY_RUB = 1;
+}

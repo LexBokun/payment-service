@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package payment.models.transaction.v1;
+
+import "google/protobuf/timestamp.proto";
+import "proto/payment/models/transaction/v1/operation.proto";
+
+option go_package = "github.com/LexBokun/payment-service/pkg/api/payment/models/v1";
+
+// Обменная транзакция, включающая списание и зачисление
+message Transaction {
+  Operation from = 1;     // Операция списания (например, списание с yoomoney)
+  Operation to = 2;       // Операция зачисления (например, начисление на крипто-кошелек)
+  google.protobuf.Timestamp created_at = 3;
+}

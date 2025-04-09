@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package payment.service.v1.requests;
 
-import "proto/payment/models/transaction/v1/transaction.proto";
+import "payment/models/transaction/v1/transaction.proto";
 
 option go_package = "github.com/LexBokun/payment-service/pkg/api/payment/service/v1/requests";
 

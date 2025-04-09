@@ -4,12 +4,12 @@ package payment.service.v1;
 
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
-import "proto/payment/service/v1/requests/create_payment_request.proto";
-import "proto/payment/service/v1/responses/create_payment_response.proto";
-import "proto/payment/service/v1/requests/get_payment_request.proto";
-import "proto/payment/service/v1/responses/get_payment_response.proto";
-import "proto/payment/service/v1/requests/list_payments_request.proto";
-import "proto/payment/service/v1/responses/list_payments_response.proto";
+import "payment/service/v1/requests/create_payment_request.proto";
+import "payment/service/v1/responses/create_payment_response.proto";
+import "payment/service/v1/requests/get_payment_request.proto";
+import "payment/service/v1/responses/get_payment_response.proto";
+import "payment/service/v1/requests/list_payments_request.proto";
+import "payment/service/v1/responses/list_payments_response.proto";
 
 option go_package = "github.com/LexBokun/payment-service/pkg/api/payment/service/v1";
 

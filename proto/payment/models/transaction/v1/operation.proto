@@ -3,9 +3,9 @@ syntax = "proto3";
 package payment.models.transaction.v1;
 
 import "google/protobuf/timestamp.proto";
-import "proto/types/money/v1/money.proto";
+import "types/money/v1/money.proto";
 
-option go_package = "github.com/LexBokun/payment-service/pkg/api/payment/models/v1";
+option go_package = "github.com/LexBokun/payment-service/pkg/api/payment/models/transaction/v1";
 
 // Операция списания или зачисления
 message Operation {

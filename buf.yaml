@@ -1,7 +1,8 @@
 # For details on buf.yaml configuration, visit https://buf.build/docs/configuration/v2/buf-yaml
 version: v2
 modules:
-  - path: proto
+  - path: proto/
+    name: buf.build/buuf/payment-service
 deps:
   - buf.build/googleapis/googleapis
   - buf.build/grpc-ecosystem/grpc-gateway
@@ -12,3 +13,4 @@ lint:
 breaking:
   use:
     - FILE
+

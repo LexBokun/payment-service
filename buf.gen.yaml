@@ -8,15 +8,15 @@ plugins:
     out: pkg/api
     opt:
       - paths=source_relative
-  - local: ./bin/grpc-gateway
+  - local: ./bin/protoc-gen-grpc-gateway
     out: pkg/api
-    opt:
-      - generate_unbound_methods=true
-      - logtostderr=true
-      - paths=source_relative
-  - local: .bin/openapiv2
+    # opt:
+    #   - generate_unbound_methods=true
+    #   - logtostderr=true
+    #   - paths=source_relative
+  - local: ./bin/protoc-gen-openapiv2
     out: pkg/api
-    opt:
-      - require_unimplemented_servers=false
-      - generate_unbound_methods=true
-      - fqn_for_openapi_name=true
+    # opt:
+    #   - require_unimplemented_servers=false
+    #   - generate_unbound_methods=true
+    #   - fqn_for_openapi_name=true

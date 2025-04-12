@@ -5,5 +5,5 @@ package payment.service.v1.responses;
 option go_package = "github.com/LexBokun/payment-service/pkg/api/payment/service/v1/responses";
 
 message CreateResponse {
-  string payment_id = 1; // Уникальный идентификатор платежа
+  string id = 1; // id транзакции
 }

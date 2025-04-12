@@ -9,6 +9,6 @@ option go_package = "github.com/LexBokun/payment-service/pkg/api/payment/service
 
 // Получение данных о платежной транзакции по id
 message GetResponse {
-  string payment_id = 1;                                      // Уникальный идентификатор платежа
+  string id = 1;                                      // id транзакции
   payment.models.transaction.v1.Transaction transaction = 2;  // Встраиваем общую структуру для данных платежа
 }

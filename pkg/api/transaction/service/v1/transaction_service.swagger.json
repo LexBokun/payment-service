@@ -1,0 +1,339 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "transaction/service/v1/transaction_service.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "TransactionService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/transaction/v1/create": {
+      "post": {
+        "summary": "Создание новой транзакции",
+        "description": "Этот метод позволяет создать новую транзакцию",
+        "operationId": "TransactionService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/transaction.service.v1.responses.CreateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/transaction.service.v1.requests.CreateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "transaction"
+        ]
+      }
+    },
+    "/transaction/v1/list": {
+      "get": {
+        "summary": "Получение списка транзакций",
+        "description": "Этот метод возвращает список всех транзакций",
+        "operationId": "TransactionService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/transaction.service.v1.responses.ListResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Количество записей на странице",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "cursor",
+            "description": "Указатель на последний платеж",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "transaction"
+        ]
+      }
+    },
+    "/transaction/v1/{id}": {
+      "get": {
+        "summary": "Получение транзакции по ID",
+        "description": "Этот метод возвращает информацию о транзакции по его уникальному идентификатору",
+        "operationId": "TransactionService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/transaction.service.v1.responses.GetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id транзакции",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "transaction"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "enums.cryptocurrency.v1.Currency": {
+      "type": "string",
+      "enum": [
+        "CURRENCY_CRYPTO_UNSPECIFIED",
+        "CURRENCY_BTC",
+        "CURRENCY_TON",
+        "CURRENCY_USDT"
+      ],
+      "default": "CURRENCY_CRYPTO_UNSPECIFIED",
+      "title": "Список доступных криптовалют(BTC, TON, ...)"
+    },
+    "enums.fiatcurrency.v1.Currency": {
+      "type": "string",
+      "enum": [
+        "CURRENCY_FIAT_UNSPECIFIED",
+        "CURRENCY_RUB"
+      ],
+      "default": "CURRENCY_FIAT_UNSPECIFIED",
+      "title": "Список доступных фиатных валют(RUB)"
+    },
+    "enums.transactionstatus.v1.Status": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNSPECIFIED",
+        "STATUS_CREATED",
+        "STATUS_PENDING",
+        "STATUS_SUCCESS",
+        "STATUS_FAILED",
+        "STATUS_UNKNOWN"
+      ],
+      "default": "STATUS_UNSPECIFIED",
+      "title": "Статус транхакции(PENDING, SUCCESS, ...)"
+    },
+    "enums.transactiontype.v1.Type": {
+      "type": "string",
+      "enum": [
+        "TYPE_UNSPECIFIED",
+        "TYPE_INVOICE",
+        "TYPE_WITHDRAW"
+      ],
+      "default": "TYPE_UNSPECIFIED",
+      "title": "Тип перевода(INVOICE, WITHDRAW)"
+    },
+    "google.protobuf.Any": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "google.rpc.Status": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/google.protobuf.Any"
+          }
+        }
+      }
+    },
+    "transaction.models.transaction.v1.Operation": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "string",
+          "title": "Реквизит: баланс или адрес крипто-кошелька"
+        },
+        "money": {
+          "$ref": "#/definitions/types.money.v1.Money",
+          "title": "Данные о сумме операции(amount, success_paid, fee)"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "Операция списания или зачисления"
+    },
+    "transaction.models.transaction.v1.Transaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "transaction_id - id транзакции"
+        },
+        "status": {
+          "$ref": "#/definitions/enums.transactionstatus.v1.Status",
+          "title": "Текущий статус транзакции"
+        },
+        "type": {
+          "$ref": "#/definitions/enums.transactiontype.v1.Type",
+          "title": "Тип транзакции"
+        },
+        "from": {
+          "$ref": "#/definitions/transaction.models.transaction.v1.Operation",
+          "title": "Операция списания (например, списание с balance)"
+        },
+        "to": {
+          "$ref": "#/definitions/transaction.models.transaction.v1.Operation",
+          "title": "Операция зачисления (например, начисление на крипто-кошелек)"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "title": "Обменная транзакция, включающая списание и зачисление"
+    },
+    "transaction.service.v1.requests.CreateRequest": {
+      "type": "object",
+      "properties": {
+        "transaction": {
+          "$ref": "#/definitions/transaction.models.transaction.v1.Transaction"
+        }
+      },
+      "title": "Создание транзакции перевода из фиатной валюты в криптовалюту"
+    },
+    "transaction.service.v1.requests.GetRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "id транзакции"
+        }
+      },
+      "title": "Получить информацию о платежной транзакции"
+    },
+    "transaction.service.v1.responses.CreateResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "id транзакции"
+        }
+      }
+    },
+    "transaction.service.v1.responses.GetResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "id транзакции"
+        },
+        "transaction": {
+          "$ref": "#/definitions/transaction.models.transaction.v1.Transaction",
+          "title": "Встраиваем общую структуру для данных транзакции"
+        }
+      },
+      "title": "Получение данных о платежной транзакции по id"
+    },
+    "transaction.service.v1.responses.ListResponse": {
+      "type": "object",
+      "properties": {
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/transaction.service.v1.requests.GetRequest"
+          },
+          "title": "Список платежей"
+        },
+        "nextCursor": {
+          "type": "string",
+          "title": "Курсор для следующей страницы (если он есть)"
+        }
+      },
+      "title": "Возвращает список транзакций с пагинацией(cursor-based)"
+    },
+    "types.money.v1.Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "title": "Введённая сумма"
+        },
+        "successPaid": {
+          "type": "string",
+          "title": "Сумма + комиссия"
+        },
+        "fee": {
+          "type": "string",
+          "title": "Комиссия (если есть)"
+        },
+        "crypto": {
+          "$ref": "#/definitions/enums.cryptocurrency.v1.Currency",
+          "description": "BTC, TON ..."
+        },
+        "fiat": {
+          "$ref": "#/definitions/enums.fiatcurrency.v1.Currency",
+          "description": "RUB, ..."
+        }
+      },
+      "title": "Универсальное представление денежек"
+    }
+  }
+}

@@ -6,7 +6,7 @@ package types.money.v1;
 import "enums/cryptocurrency/v1/crypto_currency.proto";
 import "enums/fiatcurrency/v1/fiat_currency.proto";
 
-option go_package = "github.com/LexBokun/payment-service/pkg/api/types/money/v1";
+option go_package = "github.com/LexBokun/transaction-service/pkg/api/types/money/v1";
 
 // Универсальное представление денежек
 message Money {

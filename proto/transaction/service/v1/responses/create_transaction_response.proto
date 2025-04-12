@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package transaction.service.v1.responses;
+
+option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction/service/v1/responses";
+
+message CreateResponse {
+  string id = 1; // id транзакции
+}

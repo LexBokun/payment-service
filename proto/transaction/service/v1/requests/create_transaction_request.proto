@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package transaction.service.v1.requests;
+
+import "transaction/models/transaction/v1/transaction.proto";
+
+option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction/service/v1/requests";
+
+// Создание транзакции перевода из фиатной валюты в криптовалюту
+message CreateRequest {
+  transaction.models.transaction.v1.Transaction payment_data = 1;
+}
+

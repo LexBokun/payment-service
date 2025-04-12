@@ -1,4 +1,4 @@
-module github.com/LexBokun/payment-service
+module github.com/LexBokun/transaction-service
 
 go 1.24.0
 

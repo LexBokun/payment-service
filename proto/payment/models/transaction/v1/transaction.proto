@@ -5,14 +5,16 @@ package payment.models.transaction.v1;
 import "google/protobuf/timestamp.proto";
 import "payment/models/transaction/v1/operation.proto";
 import "enums/paymentstatus/v1/payment_status.proto";
+import "enums/transactiontype/v1/transaction_type.proto";
 
 option go_package = "github.com/LexBokun/payment-service/pkg/api/payment/models/transaction/v1";
 
 // Обменная транзакция, включающая списание и зачисление
 message Transaction {
-  string id = 1;          // payment_id - id транзакции
-  
-  Operation from = 2;     // Операция списания (например, списание с yoomoney)
-  Operation to = 3;       // Операция зачисления (например, начисление на крипто-кошелек)
-  google.protobuf.Timestamp created_at = 4;
+  string id = 1;                              // payment_id - id транзакции
+  enums.paymentstatus.v1.Status status = 2;   // Текущий статус платежа
+  enums.transactiontype.v1.Type type = 3;     // Тип платежа
+  Operation from = 4;                         // Операция списания (например, списание с yoomoney)
+  Operation to = 5;                           // Операция зачисления (например, начисление на крипто-кошелек)
+  google.protobuf.Timestamp created_at = 6;
 }

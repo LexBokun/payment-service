@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package enums.transactiontype.v1;
+
+option go_package = "github.com/LexBokun/payment-service/pkg/api/enums/transactiontype/v1";
+
+// Тип перевода(INVOICE, WITHDRAW)
+enum Type {
+  TYPE_UNSPECIFIED = 0;
+  TYPE_INVOICE = 1;
+  TYPE_WITHDRAW = 2;
+}

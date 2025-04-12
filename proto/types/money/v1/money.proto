@@ -10,10 +10,12 @@ option go_package = "github.com/LexBokun/payment-service/pkg/api/types/money/v1"
 
 // Универсальное представление денежек
 message Money {
-  string amount = 1;
+  string amount = 1;                              // Введённая сумма
+  string success_paid = 2;                        // Сумма + комиссия
+  string fee = 3;                                 // Комиссия (если есть)
 
   oneof currency {
-    enums.cryptocurrency.v1.Currency crypto = 2;  //BTC, TON ...
-    enums.fiatcurrency.v1.Currency fiat = 3;      // RUB, ...
+    enums.cryptocurrency.v1.Currency crypto = 4;  //BTC, TON ...
+    enums.fiatcurrency.v1.Currency fiat = 5;      // RUB, ...
   }
 }

@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package transaction.service.v1.responses;
 
-import "enums/paymentstatus/v1/payment_status.proto";
 import "transaction/models/transaction/v1/transaction.proto";
 
 option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction/service/v1/responses";
@@ -10,5 +9,5 @@ option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction
 // Получение данных о платежной транзакции по id
 message GetResponse {
   string id = 1;                                                  // id транзакции
-  transaction.models.transaction.v1.Transaction transaction = 2;  // Встраиваем общую структуру для данных платежа
+  transaction.models.transaction.v1.Transaction transaction = 2;  // Встраиваем общую структуру для данных транзакции
 }

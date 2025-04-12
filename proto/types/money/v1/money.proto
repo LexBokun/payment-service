@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package types.money.v1;
 
-//import "google/type/decimal.proto";
 import "enums/cryptocurrency/v1/crypto_currency.proto";
 import "enums/fiatcurrency/v1/fiat_currency.proto";
 

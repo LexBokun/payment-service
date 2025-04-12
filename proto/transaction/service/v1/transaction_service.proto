@@ -13,7 +13,7 @@ import "transaction/service/v1/responses/list_transaction_response.proto";
 
 option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction/service/v1";
 
-service PaymentService {
+service TransactionService {
   rpc Create(transaction.service.v1.requests.CreateRequest) returns (transaction.service.v1.responses.CreateResponse) {
     option (google.api.http) = {post: "/transaction/v1/create" body: "*"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {

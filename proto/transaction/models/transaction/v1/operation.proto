@@ -9,8 +9,8 @@ option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction
 
 // Операция списания или зачисления
 message Operation {
-  string account = 1;                       // Реквизит: номер карты или адрес крипто-кошелька
-  types.money.v1.Money money = 3;           // Данные о сумме операции(amount, success_paid, fee)
-  google.protobuf.Timestamp created_at = 5;
-  google.protobuf.Timestamp updated_at = 6;
+  string account = 1;                       // Реквизит: баланс или адрес крипто-кошелька
+  types.money.v1.Money money = 2;           // Данные о сумме операции(amount, success_paid, fee)
+  google.protobuf.Timestamp created_at = 3;
+  google.protobuf.Timestamp updated_at = 4;
 }

@@ -8,6 +8,6 @@ option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction
 
 // Возвращает список транзакций с пагинацией(cursor-based)
 message ListResponse {
-  repeated transaction.service.v1.requests.GetRequest payments = 1;   // Список платежей
-  string next_cursor = 2;                                             // Курсор для следующей страницы (если он есть)
+  repeated transaction.service.v1.requests.GetRequest transactions = 1;   // Список платежей
+  string next_cursor = 2;                                                 // Курсор для следующей страницы (если он есть)
 }

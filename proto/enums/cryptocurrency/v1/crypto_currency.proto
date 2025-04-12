@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package enums.cryptocurrency.v1;
 
-option go_package = "github.com/LexBokun/payment-service/pkg/api/enums/cryptocurrency/v1";
+option go_package = "github.com/LexBokun/transaction-service/pkg/api/enums/cryptocurrency/v1";
 
 // Список доступных криптовалют(BTC, TON, ...)
 enum Currency {

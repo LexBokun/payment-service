@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package transaction.models.transaction.v1;
+
+import "google/protobuf/timestamp.proto";
+import "transaction/models/transaction/v1/operation.proto";
+import "enums/paymentstatus/v1/payment_status.proto";
+import "enums/transactiontype/v1/transaction_type.proto";
+
+option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction/models/transaction/v1";
+
+// Обменная транзакция, включающая списание и зачисление
+message Transaction {
+  string id = 1;                                  // payment_id - id транзакции
+  enums.transactionstatus.v1.Status status = 2;   // Текущий статус платежа
+  enums.transactiontype.v1.Type type = 3;         // Тип платежа
+  Operation from = 4;                             // Операция списания (например, списание с balance)
+  Operation to = 5;                               // Операция зачисления (например, начисление на крипто-кошелек)
+  google.protobuf.Timestamp created_at = 6;
+}

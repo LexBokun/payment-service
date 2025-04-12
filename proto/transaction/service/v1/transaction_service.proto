@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package transaction.service.v1;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "transaction/service/v1/requests/create_transaction_request.proto";
+import "transaction/service/v1/responses/create_transaction_response.proto";
+import "transaction/service/v1/requests/get_transaction_request.proto";
+import "transaction/service/v1/responses/get_transaction_response.proto";
+import "transaction/service/v1/requests/list_transaction_request.proto";
+import "transaction/service/v1/responses/list_transaction_response.proto";
+
+option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction/service/v1";
+
+service PaymentService {
+  rpc Create(transaction.service.v1.requests.CreateRequest) returns (transaction.service.v1.responses.CreateResponse) {
+    option (google.api.http) = {post: "/transaction/v1/create" body: "*"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "transaction"
+      summary: "Создание новой транзакции"
+      description: "Этот метод позволяет создать новую транзакцию"
+    };
+  }
+
+  rpc Get(transaction.service.v1.requests.GetRequest) returns (transaction.service.v1.responses.GetResponse) {
+    option (google.api.http) = {get: "/transaction/v1/{id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "transaction"
+      summary: "Получение транзакции по ID"
+      description: "Этот метод возвращает информацию о транзакции по его уникальному идентификатору"
+    };
+  }
+
+  rpc List(transaction.service.v1.requests.ListRequest) returns (transaction.service.v1.responses.ListResponse) {
+    option (google.api.http) = {get: "/transaction/v1/list"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "transaction"
+      summary: "Получение списка транзакций"
+      description: "Этот метод возвращает список всех транзакций"
+    };
+  }
+}

@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package enums.paymentmethod.v1;
+package enums.transactionmethod.v1;
 
-option go_package = "github.com/LexBokun/payment-service/pkg/api/enums/paymentmethod/v1";
+option go_package = "github.com/LexBokun/transaction-service/pkg/api/enums/paymentmethod/v1";
 
 // Методы оплаты (Юmoney, карта, ...)
 enum Method {

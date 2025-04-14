@@ -9,6 +9,7 @@ package v1
 import (
 	v1 "github.com/LexBokun/transaction-service/pkg/api/enums/cryptocurrency/v1"
 	v11 "github.com/LexBokun/transaction-service/pkg/api/enums/fiatcurrency/v1"
+	decimal "google.golang.org/genproto/googleapis/type/decimal"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -26,9 +27,9 @@ const (
 // Универсальное представление денежек
 type Money struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
-	Amount      string                 `protobuf:"bytes,1,opt,name=amount,proto3" json:"amount,omitempty"`                              // Введённая сумма
-	SuccessPaid string                 `protobuf:"bytes,2,opt,name=success_paid,json=successPaid,proto3" json:"success_paid,omitempty"` // Сумма + комиссия
-	Fee         string                 `protobuf:"bytes,3,opt,name=fee,proto3" json:"fee,omitempty"`                                    // Комиссия (если есть)
+	Amount      *decimal.Decimal       `protobuf:"bytes,1,opt,name=amount,proto3" json:"amount,omitempty"`                              // Введённая сумма
+	SuccessPaid *decimal.Decimal       `protobuf:"bytes,2,opt,name=success_paid,json=successPaid,proto3" json:"success_paid,omitempty"` // Сумма + комиссия
+	Fee         *decimal.Decimal       `protobuf:"bytes,3,opt,name=fee,proto3" json:"fee,omitempty"`                                    // Комиссия (если есть)
 	// Types that are valid to be assigned to Currency:
 	//
 	//	*Money_Crypto
@@ -68,25 +69,25 @@ func (*Money) Descriptor() ([]byte, []int) {
 	return file_types_money_v1_money_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Money) GetAmount() string {
+func (x *Money) GetAmount() *decimal.Decimal {
 	if x != nil {
 		return x.Amount
 	}
-	return ""
+	return nil
 }
 
-func (x *Money) GetSuccessPaid() string {
+func (x *Money) GetSuccessPaid() *decimal.Decimal {
 	if x != nil {
 		return x.SuccessPaid
 	}
-	return ""
+	return nil
 }
 
-func (x *Money) GetFee() string {
+func (x *Money) GetFee() *decimal.Decimal {
 	if x != nil {
 		return x.Fee
 	}
-	return ""
+	return nil
 }
 
 func (x *Money) GetCurrency() isMoney_Currency {
@@ -134,11 +135,11 @@ var File_types_money_v1_money_proto protoreflect.FileDescriptor
 
 const file_types_money_v1_money_proto_rawDesc = "" +
 	"\n" +
-	"\x1atypes/money/v1/money.proto\x12\x0etypes.money.v1\x1a-enums/cryptocurrency/v1/crypto_currency.proto\x1a)enums/fiatcurrency/v1/fiat_currency.proto\"\xd4\x01\n" +
-	"\x05Money\x12\x16\n" +
-	"\x06amount\x18\x01 \x01(\tR\x06amount\x12!\n" +
-	"\fsuccess_paid\x18\x02 \x01(\tR\vsuccessPaid\x12\x10\n" +
-	"\x03fee\x18\x03 \x01(\tR\x03fee\x12;\n" +
+	"\x1atypes/money/v1/money.proto\x12\x0etypes.money.v1\x1a-enums/cryptocurrency/v1/crypto_currency.proto\x1a)enums/fiatcurrency/v1/fiat_currency.proto\x1a\x19google/type/decimal.proto\"\x96\x02\n" +
+	"\x05Money\x12,\n" +
+	"\x06amount\x18\x01 \x01(\v2\x14.google.type.DecimalR\x06amount\x127\n" +
+	"\fsuccess_paid\x18\x02 \x01(\v2\x14.google.type.DecimalR\vsuccessPaid\x12&\n" +
+	"\x03fee\x18\x03 \x01(\v2\x14.google.type.DecimalR\x03fee\x12;\n" +
 	"\x06crypto\x18\x04 \x01(\x0e2!.enums.cryptocurrency.v1.CurrencyH\x00R\x06crypto\x125\n" +
 	"\x04fiat\x18\x05 \x01(\x0e2\x1f.enums.fiatcurrency.v1.CurrencyH\x00R\x04fiatB\n" +
 	"\n" +
@@ -158,18 +159,22 @@ func file_types_money_v1_money_proto_rawDescGZIP() []byte {
 
 var file_types_money_v1_money_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_types_money_v1_money_proto_goTypes = []any{
-	(*Money)(nil),     // 0: types.money.v1.Money
-	(v1.Currency)(0),  // 1: enums.cryptocurrency.v1.Currency
-	(v11.Currency)(0), // 2: enums.fiatcurrency.v1.Currency
+	(*Money)(nil),           // 0: types.money.v1.Money
+	(*decimal.Decimal)(nil), // 1: google.type.Decimal
+	(v1.Currency)(0),        // 2: enums.cryptocurrency.v1.Currency
+	(v11.Currency)(0),       // 3: enums.fiatcurrency.v1.Currency
 }
 var file_types_money_v1_money_proto_depIdxs = []int32{
-	1, // 0: types.money.v1.Money.crypto:type_name -> enums.cryptocurrency.v1.Currency
-	2, // 1: types.money.v1.Money.fiat:type_name -> enums.fiatcurrency.v1.Currency
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	1, // 0: types.money.v1.Money.amount:type_name -> google.type.Decimal
+	1, // 1: types.money.v1.Money.success_paid:type_name -> google.type.Decimal
+	1, // 2: types.money.v1.Money.fee:type_name -> google.type.Decimal
+	2, // 3: types.money.v1.Money.crypto:type_name -> enums.cryptocurrency.v1.Currency
+	3, // 4: types.money.v1.Money.fiat:type_name -> enums.fiatcurrency.v1.Currency
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_types_money_v1_money_proto_init() }

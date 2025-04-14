@@ -4,14 +4,16 @@ package types.money.v1;
 
 import "enums/cryptocurrency/v1/crypto_currency.proto";
 import "enums/fiatcurrency/v1/fiat_currency.proto";
+import "google/type/decimal.proto";
+
 
 option go_package = "github.com/LexBokun/transaction-service/pkg/api/types/money/v1";
 
 // Универсальное представление денежек
 message Money {
-  string amount = 1;                              // Введённая сумма
-  string success_paid = 2;                        // Сумма + комиссия
-  string fee = 3;                                 // Комиссия (если есть)
+  google.type.Decimal amount = 1;                              // Введённая сумма
+  google.type.Decimal success_paid = 2;                        // Сумма + комиссия
+  google.type.Decimal fee = 3;                                 // Комиссия (если есть)
 
   oneof currency {
     enums.cryptocurrency.v1.Currency crypto = 4;  //BTC, TON ...

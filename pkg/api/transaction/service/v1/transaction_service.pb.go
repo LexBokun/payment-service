@@ -28,32 +28,39 @@ var File_transaction_service_v1_transaction_service_proto protoreflect.FileDescr
 
 const file_transaction_service_v1_transaction_service_proto_rawDesc = "" +
 	"\n" +
-	"0transaction/service/v1/transaction_service.proto\x12\x16transaction.service.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a@transaction/service/v1/requests/create_transaction_request.proto\x1aBtransaction/service/v1/responses/create_transaction_response.proto\x1a=transaction/service/v1/requests/get_transaction_request.proto\x1a?transaction/service/v1/responses/get_transaction_response.proto\x1a>transaction/service/v1/requests/list_transaction_request.proto\x1a@transaction/service/v1/responses/list_transaction_response.proto2\xbe\a\n" +
+	"0transaction/service/v1/transaction_service.proto\x12\x16transaction.service.v1\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a@transaction/service/v1/requests/create_transaction_request.proto\x1aBtransaction/service/v1/responses/create_transaction_response.proto\x1a=transaction/service/v1/requests/get_transaction_request.proto\x1a?transaction/service/v1/responses/get_transaction_response.proto\x1a>transaction/service/v1/requests/list_transaction_request.proto\x1a@transaction/service/v1/responses/list_transaction_response.proto\x1a@transaction/service/v1/requests/update_transaction_request.proto\x1aBtransaction/service/v1/responses/update_transaction_response.proto2\xb2\n" +
+	"\n" +
 	"\x12TransactionService\x12\xa8\x02\n" +
 	"\x06Create\x12..transaction.service.v1.requests.CreateRequest\x1a0.transaction.service.v1.responses.CreateResponse\"\xbb\x01\x92A\x96\x01\n" +
 	"\vtransaction\x120Создание новой транзакции\x1aUЭтот метод позволяет создать новую транзакцию\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/transaction/v1/create\x12\xda\x02\n" +
 	"\x03Get\x12+.transaction.service.v1.requests.GetRequest\x1a-.transaction.service.v1.responses.GetResponse\"\xf6\x01\x92A\xd6\x01\n" +
-	"\vtransaction\x12/Получение транзакции по ID\x1a\x95\x01Этот метод возвращает информацию о транзакции по его уникальному идентификатору\x82\xd3\xe4\x93\x02\x16\x12\x14/transaction/v1/{id}\x12\x9f\x02\n" +
+	"\vtransaction\x12/Получение транзакции по ID\x1a\x95\x01Этот метод возвращает информацию о транзакции по его уникальному идентификатору\x82\xd3\xe4\x93\x02\x16\x12\x14/transaction/v1/{id}\x12\xf1\x02\n" +
+	"\x06Update\x12..transaction.service.v1.requests.UpdateRequest\x1a0.transaction.service.v1.responses.UpdateResponse\"\x84\x02\x92A\x80\x02\n" +
+	"\vtransaction\x12CВнутренний метод обновления статуса\x1a\xa9\x01Этот метод используется только для обновления статуса транзакции, недоступен из внешнего APIX\x01\x12\x9f\x02\n" +
 	"\x04List\x12,.transaction.service.v1.requests.ListRequest\x1a..transaction.service.v1.responses.ListResponse\"\xb8\x01\x92A\x98\x01\n" +
 	"\vtransaction\x124Получение списка транзакций\x1aSЭтот метод возвращает список всех транзакций\x82\xd3\xe4\x93\x02\x16\x12\x14/transaction/v1/listBHZFgithub.com/LexBokun/transaction-service/pkg/api/transaction/service/v1b\x06proto3"
 
 var file_transaction_service_v1_transaction_service_proto_goTypes = []any{
 	(*requests.CreateRequest)(nil),   // 0: transaction.service.v1.requests.CreateRequest
 	(*requests.GetRequest)(nil),      // 1: transaction.service.v1.requests.GetRequest
-	(*requests.ListRequest)(nil),     // 2: transaction.service.v1.requests.ListRequest
-	(*responses.CreateResponse)(nil), // 3: transaction.service.v1.responses.CreateResponse
-	(*responses.GetResponse)(nil),    // 4: transaction.service.v1.responses.GetResponse
-	(*responses.ListResponse)(nil),   // 5: transaction.service.v1.responses.ListResponse
+	(*requests.UpdateRequest)(nil),   // 2: transaction.service.v1.requests.UpdateRequest
+	(*requests.ListRequest)(nil),     // 3: transaction.service.v1.requests.ListRequest
+	(*responses.CreateResponse)(nil), // 4: transaction.service.v1.responses.CreateResponse
+	(*responses.GetResponse)(nil),    // 5: transaction.service.v1.responses.GetResponse
+	(*responses.UpdateResponse)(nil), // 6: transaction.service.v1.responses.UpdateResponse
+	(*responses.ListResponse)(nil),   // 7: transaction.service.v1.responses.ListResponse
 }
 var file_transaction_service_v1_transaction_service_proto_depIdxs = []int32{
 	0, // 0: transaction.service.v1.TransactionService.Create:input_type -> transaction.service.v1.requests.CreateRequest
 	1, // 1: transaction.service.v1.TransactionService.Get:input_type -> transaction.service.v1.requests.GetRequest
-	2, // 2: transaction.service.v1.TransactionService.List:input_type -> transaction.service.v1.requests.ListRequest
-	3, // 3: transaction.service.v1.TransactionService.Create:output_type -> transaction.service.v1.responses.CreateResponse
-	4, // 4: transaction.service.v1.TransactionService.Get:output_type -> transaction.service.v1.responses.GetResponse
-	5, // 5: transaction.service.v1.TransactionService.List:output_type -> transaction.service.v1.responses.ListResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	2, // 2: transaction.service.v1.TransactionService.Update:input_type -> transaction.service.v1.requests.UpdateRequest
+	3, // 3: transaction.service.v1.TransactionService.List:input_type -> transaction.service.v1.requests.ListRequest
+	4, // 4: transaction.service.v1.TransactionService.Create:output_type -> transaction.service.v1.responses.CreateResponse
+	5, // 5: transaction.service.v1.TransactionService.Get:output_type -> transaction.service.v1.responses.GetResponse
+	6, // 6: transaction.service.v1.TransactionService.Update:output_type -> transaction.service.v1.responses.UpdateResponse
+	7, // 7: transaction.service.v1.TransactionService.List:output_type -> transaction.service.v1.responses.ListResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	TransactionService_Create_FullMethodName = "/transaction.service.v1.TransactionService/Create"
 	TransactionService_Get_FullMethodName    = "/transaction.service.v1.TransactionService/Get"
+	TransactionService_Update_FullMethodName = "/transaction.service.v1.TransactionService/Update"
 	TransactionService_List_FullMethodName   = "/transaction.service.v1.TransactionService/List"
 )
 
@@ -32,6 +33,7 @@ const (
 type TransactionServiceClient interface {
 	Create(ctx context.Context, in *requests.CreateRequest, opts ...grpc.CallOption) (*responses.CreateResponse, error)
 	Get(ctx context.Context, in *requests.GetRequest, opts ...grpc.CallOption) (*responses.GetResponse, error)
+	Update(ctx context.Context, in *requests.UpdateRequest, opts ...grpc.CallOption) (*responses.UpdateResponse, error)
 	List(ctx context.Context, in *requests.ListRequest, opts ...grpc.CallOption) (*responses.ListResponse, error)
 }
 
@@ -63,6 +65,16 @@ func (c *transactionServiceClient) Get(ctx context.Context, in *requests.GetRequ
 	return out, nil
 }
 
+func (c *transactionServiceClient) Update(ctx context.Context, in *requests.UpdateRequest, opts ...grpc.CallOption) (*responses.UpdateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(responses.UpdateResponse)
+	err := c.cc.Invoke(ctx, TransactionService_Update_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *transactionServiceClient) List(ctx context.Context, in *requests.ListRequest, opts ...grpc.CallOption) (*responses.ListResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(responses.ListResponse)
@@ -79,6 +91,7 @@ func (c *transactionServiceClient) List(ctx context.Context, in *requests.ListRe
 type TransactionServiceServer interface {
 	Create(context.Context, *requests.CreateRequest) (*responses.CreateResponse, error)
 	Get(context.Context, *requests.GetRequest) (*responses.GetResponse, error)
+	Update(context.Context, *requests.UpdateRequest) (*responses.UpdateResponse, error)
 	List(context.Context, *requests.ListRequest) (*responses.ListResponse, error)
 	mustEmbedUnimplementedTransactionServiceServer()
 }
@@ -95,6 +108,9 @@ func (UnimplementedTransactionServiceServer) Create(context.Context, *requests.C
 }
 func (UnimplementedTransactionServiceServer) Get(context.Context, *requests.GetRequest) (*responses.GetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (UnimplementedTransactionServiceServer) Update(context.Context, *requests.UpdateRequest) (*responses.UpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 func (UnimplementedTransactionServiceServer) List(context.Context, *requests.ListRequest) (*responses.ListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
@@ -156,6 +172,24 @@ func _TransactionService_Get_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransactionService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(requests.UpdateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransactionServiceServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransactionService_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransactionServiceServer).Update(ctx, req.(*requests.UpdateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TransactionService_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(requests.ListRequest)
 	if err := dec(in); err != nil {
@@ -188,6 +222,10 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _TransactionService_Get_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _TransactionService_Update_Handler,
 		},
 		{
 			MethodName: "List",

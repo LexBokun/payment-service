@@ -16,6 +16,41 @@
     "application/json"
   ],
   "paths": {
+    "/transaction.service.v1.TransactionService/Update": {
+      "post": {
+        "summary": "Внутренний метод обновления статуса",
+        "description": "Этот метод используется только для обновления статуса транзакции, недоступен из внешнего API",
+        "operationId": "TransactionService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/transaction.service.v1.responses.UpdateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/transaction.service.v1.requests.UpdateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "transaction"
+        ],
+        "deprecated": true
+      }
+    },
     "/transaction/v1/create": {
       "post": {
         "summary": "Создание новой транзакции",
@@ -268,6 +303,20 @@
       },
       "title": "Получить информацию о платежной транзакции"
     },
+    "transaction.service.v1.requests.UpdateRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Id транзакции"
+        },
+        "status": {
+          "$ref": "#/definitions/enums.transactionstatus.v1.Status",
+          "title": "Статус транзакции"
+        }
+      },
+      "title": "Внутренний метод обновления статуса транзакции"
+    },
     "transaction.service.v1.responses.CreateResponse": {
       "type": "object",
       "properties": {
@@ -308,6 +357,9 @@
         }
       },
       "title": "Возвращает список транзакций с пагинацией(cursor-based)"
+    },
+    "transaction.service.v1.responses.UpdateResponse": {
+      "type": "object"
     },
     "types.money.v1.Money": {
       "type": "object",

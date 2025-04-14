@@ -11,6 +11,7 @@ tool (
 
 require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.26.3
+	github.com/samber/lo v1.49.1
 	google.golang.org/genproto v0.0.0-20250414145226-207652e42e2e
 	google.golang.org/genproto/googleapis/api v0.0.0-20250409194420-de1ac958c67a
 	google.golang.org/grpc v1.71.0
@@ -18,7 +19,6 @@ require (
 )
 
 require (
-	github.com/kr/text v0.2.0 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
 	golang.org/x/net v0.37.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect

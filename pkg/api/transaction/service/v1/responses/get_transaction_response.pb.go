@@ -25,8 +25,7 @@ const (
 // Получение данных о платежной транзакции по id
 type GetResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`                   // id транзакции
-	Transaction   *v1.Transaction        `protobuf:"bytes,2,opt,name=transaction,proto3" json:"transaction,omitempty"` // Встраиваем общую структуру для данных транзакции
+	Transaction   *v1.Transaction        `protobuf:"bytes,1,opt,name=transaction,proto3" json:"transaction,omitempty"` // Встраиваем общую структуру для данных транзакции
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -61,13 +60,6 @@ func (*GetResponse) Descriptor() ([]byte, []int) {
 	return file_transaction_service_v1_responses_get_transaction_response_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetResponse) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
 func (x *GetResponse) GetTransaction() *v1.Transaction {
 	if x != nil {
 		return x.Transaction
@@ -79,10 +71,9 @@ var File_transaction_service_v1_responses_get_transaction_response_proto protore
 
 const file_transaction_service_v1_responses_get_transaction_response_proto_rawDesc = "" +
 	"\n" +
-	"?transaction/service/v1/responses/get_transaction_response.proto\x12 transaction.service.v1.responses\x1a3transaction/models/transaction/v1/transaction.proto\"o\n" +
-	"\vGetResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12P\n" +
-	"\vtransaction\x18\x02 \x01(\v2..transaction.models.transaction.v1.TransactionR\vtransactionBRZPgithub.com/LexBokun/transaction-service/pkg/api/transaction/service/v1/responsesb\x06proto3"
+	"?transaction/service/v1/responses/get_transaction_response.proto\x12 transaction.service.v1.responses\x1a3transaction/models/transaction/v1/transaction.proto\"_\n" +
+	"\vGetResponse\x12P\n" +
+	"\vtransaction\x18\x01 \x01(\v2..transaction.models.transaction.v1.TransactionR\vtransactionBRZPgithub.com/LexBokun/transaction-service/pkg/api/transaction/service/v1/responsesb\x06proto3"
 
 var (
 	file_transaction_service_v1_responses_get_transaction_response_proto_rawDescOnce sync.Once

@@ -339,10 +339,6 @@
     "transaction.service.v1.responses.GetResponse": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "title": "id транзакции"
-        },
         "transaction": {
           "$ref": "#/definitions/transaction.models.transaction.v1.Transaction",
           "title": "Встраиваем общую структуру для данных транзакции"

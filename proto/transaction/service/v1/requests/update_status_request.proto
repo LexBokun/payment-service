@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package transaction.service.v1.requests;
+
+import "enums/transactionstatus/v1/transaction_status.proto";
+
+option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction/service/v1/requests";
+
+// Внутренний метод обновления статуса транзакции
+message UpdateRequest {
+  string id = 1;                                // Id транзакции
+  enums.transactionstatus.v1.Status status = 2; // Статус транзакции
+
+}

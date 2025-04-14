@@ -10,6 +10,8 @@ import "transaction/service/v1/requests/get_transaction_request.proto";
 import "transaction/service/v1/responses/get_transaction_response.proto";
 import "transaction/service/v1/requests/list_transaction_request.proto";
 import "transaction/service/v1/responses/list_transaction_response.proto";
+import "transaction/service/v1/requests/update_status_request.proto";
+import "transaction/service/v1/responses/update_status_response.proto";
 
 option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction/service/v1";
 
@@ -31,6 +33,16 @@ service TransactionService {
       description: "Этот метод возвращает информацию о транзакции по его уникальному идентификатору"
     };
   }
+
+  rpc UpdateStatus(transaction.service.v1.requests.UpdateRequest) returns (transaction.service.v1.responses.UpdateResponse) {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      tags: "transaction"
+      summary: "Внутренний метод обновления статуса"
+      description: "Этот метод используется только для обновления статуса транзакции, недоступен из внешнего API"
+      deprecated: true
+    };
+  }
+
 
   rpc List(transaction.service.v1.requests.ListRequest) returns (transaction.service.v1.responses.ListResponse) {
     option (google.api.http) = {get: "/transaction/v1/list"};

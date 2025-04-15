@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package types.cryptowallet.v1;
+
+
+option go_package = "github.com/LexBokun/transaction-service/pkg/api/types/crypto-wallet/v1";
+
+// Данные о крипто-кошельке
+message CryptoWallet {
+  string address = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package types.balance.v1;
+
+
+option go_package = "github.com/LexBokun/transaction-service/pkg/api/types/balance/v1";
+
+// Данные баланса
+message Balance {
+  string id = 1; // ID Счета - юзера
+  bool is_frozen = 2; // Флаг - заморожен счет или нет
+}

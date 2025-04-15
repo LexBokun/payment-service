@@ -4,13 +4,19 @@ package transaction.models.transaction.v1;
 
 import "google/protobuf/timestamp.proto";
 import "types/money/v1/money.proto";
+import "types/balance/v1/balance.proto";
+import "types/cryptowallet/v1/crypto_wallet.proto";
 
 option go_package = "github.com/LexBokun/transaction-service/pkg/api/transaction/models/transaction/v1";
 
 // Операция списания или зачисления
 message Operation {
-  string account = 1;                       // Реквизит: баланс или адрес крипто-кошелька
-  types.money.v1.Money money = 2;           // Данные о сумме операции(amount, success_paid, fee)
-  google.protobuf.Timestamp created_at = 3;
-  google.protobuf.Timestamp updated_at = 4;
+  oneof account {
+    types.balance.v1.Balance balance = 1;
+    types.cryptowallet.v1.CryptoWallet crypto_wallet = 2;
+  }
+
+  types.money.v1.Money money = 3;           // Данные о сумме операции(amount, success_paid, fee, так же валюта)
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
 }

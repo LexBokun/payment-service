@@ -7,6 +7,8 @@
 package v1
 
 import (
+	v11 "github.com/LexBokun/transaction-service/pkg/api/types/balance/v1"
+	v12 "github.com/LexBokun/transaction-service/pkg/api/types/cryptowallet/v1"
 	v1 "github.com/LexBokun/transaction-service/pkg/api/types/money/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -25,11 +27,15 @@ const (
 
 // Операция списания или зачисления
 type Operation struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Account       string                 `protobuf:"bytes,1,opt,name=account,proto3" json:"account,omitempty"` // Реквизит: баланс или адрес крипто-кошелька
-	Money         *v1.Money              `protobuf:"bytes,2,opt,name=money,proto3" json:"money,omitempty"`     // Данные о сумме операции(amount, success_paid, fee)
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Account:
+	//
+	//	*Operation_Balance
+	//	*Operation_CryptoWallet
+	Account       isOperation_Account    `protobuf_oneof:"account"`
+	Money         *v1.Money              `protobuf:"bytes,3,opt,name=money,proto3" json:"money,omitempty"` // Данные о сумме операции(amount, success_paid, fee, так же валюта)
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -64,11 +70,29 @@ func (*Operation) Descriptor() ([]byte, []int) {
 	return file_transaction_models_transaction_v1_operation_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Operation) GetAccount() string {
+func (x *Operation) GetAccount() isOperation_Account {
 	if x != nil {
 		return x.Account
 	}
-	return ""
+	return nil
+}
+
+func (x *Operation) GetBalance() *v11.Balance {
+	if x != nil {
+		if x, ok := x.Account.(*Operation_Balance); ok {
+			return x.Balance
+		}
+	}
+	return nil
+}
+
+func (x *Operation) GetCryptoWallet() *v12.CryptoWallet {
+	if x != nil {
+		if x, ok := x.Account.(*Operation_CryptoWallet); ok {
+			return x.CryptoWallet
+		}
+	}
+	return nil
 }
 
 func (x *Operation) GetMoney() *v1.Money {
@@ -92,18 +116,36 @@ func (x *Operation) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+type isOperation_Account interface {
+	isOperation_Account()
+}
+
+type Operation_Balance struct {
+	Balance *v11.Balance `protobuf:"bytes,1,opt,name=balance,proto3,oneof"`
+}
+
+type Operation_CryptoWallet struct {
+	CryptoWallet *v12.CryptoWallet `protobuf:"bytes,2,opt,name=crypto_wallet,json=cryptoWallet,proto3,oneof"`
+}
+
+func (*Operation_Balance) isOperation_Account() {}
+
+func (*Operation_CryptoWallet) isOperation_Account() {}
+
 var File_transaction_models_transaction_v1_operation_proto protoreflect.FileDescriptor
 
 const file_transaction_models_transaction_v1_operation_proto_rawDesc = "" +
 	"\n" +
-	"1transaction/models/transaction/v1/operation.proto\x12!transaction.models.transaction.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1atypes/money/v1/money.proto\"\xc8\x01\n" +
-	"\tOperation\x12\x18\n" +
-	"\aaccount\x18\x01 \x01(\tR\aaccount\x12+\n" +
-	"\x05money\x18\x02 \x01(\v2\x15.types.money.v1.MoneyR\x05money\x129\n" +
+	"1transaction/models/transaction/v1/operation.proto\x12!transaction.models.transaction.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1atypes/money/v1/money.proto\x1a\x1etypes/balance/v1/balance.proto\x1a)types/cryptowallet/v1/crypto_wallet.proto\"\xbc\x02\n" +
+	"\tOperation\x125\n" +
+	"\abalance\x18\x01 \x01(\v2\x19.types.balance.v1.BalanceH\x00R\abalance\x12J\n" +
+	"\rcrypto_wallet\x18\x02 \x01(\v2#.types.cryptowallet.v1.CryptoWalletH\x00R\fcryptoWallet\x12+\n" +
+	"\x05money\x18\x03 \x01(\v2\x15.types.money.v1.MoneyR\x05money\x129\n" +
 	"\n" +
-	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtBSZQgithub.com/LexBokun/transaction-service/pkg/api/transaction/models/transaction/v1b\x06proto3"
+	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\t\n" +
+	"\aaccountBSZQgithub.com/LexBokun/transaction-service/pkg/api/transaction/models/transaction/v1b\x06proto3"
 
 var (
 	file_transaction_models_transaction_v1_operation_proto_rawDescOnce sync.Once
@@ -120,24 +162,32 @@ func file_transaction_models_transaction_v1_operation_proto_rawDescGZIP() []byte
 var file_transaction_models_transaction_v1_operation_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_transaction_models_transaction_v1_operation_proto_goTypes = []any{
 	(*Operation)(nil),             // 0: transaction.models.transaction.v1.Operation
-	(*v1.Money)(nil),              // 1: types.money.v1.Money
-	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
+	(*v11.Balance)(nil),           // 1: types.balance.v1.Balance
+	(*v12.CryptoWallet)(nil),      // 2: types.cryptowallet.v1.CryptoWallet
+	(*v1.Money)(nil),              // 3: types.money.v1.Money
+	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
 }
 var file_transaction_models_transaction_v1_operation_proto_depIdxs = []int32{
-	1, // 0: transaction.models.transaction.v1.Operation.money:type_name -> types.money.v1.Money
-	2, // 1: transaction.models.transaction.v1.Operation.created_at:type_name -> google.protobuf.Timestamp
-	2, // 2: transaction.models.transaction.v1.Operation.updated_at:type_name -> google.protobuf.Timestamp
-	3, // [3:3] is the sub-list for method output_type
-	3, // [3:3] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	1, // 0: transaction.models.transaction.v1.Operation.balance:type_name -> types.balance.v1.Balance
+	2, // 1: transaction.models.transaction.v1.Operation.crypto_wallet:type_name -> types.cryptowallet.v1.CryptoWallet
+	3, // 2: transaction.models.transaction.v1.Operation.money:type_name -> types.money.v1.Money
+	4, // 3: transaction.models.transaction.v1.Operation.created_at:type_name -> google.protobuf.Timestamp
+	4, // 4: transaction.models.transaction.v1.Operation.updated_at:type_name -> google.protobuf.Timestamp
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_transaction_models_transaction_v1_operation_proto_init() }
 func file_transaction_models_transaction_v1_operation_proto_init() {
 	if File_transaction_models_transaction_v1_operation_proto != nil {
 		return
+	}
+	file_transaction_models_transaction_v1_operation_proto_msgTypes[0].OneofWrappers = []any{
+		(*Operation_Balance)(nil),
+		(*Operation_CryptoWallet)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

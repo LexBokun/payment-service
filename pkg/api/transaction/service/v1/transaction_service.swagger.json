@@ -245,13 +245,15 @@
     "transaction.models.transaction.v1.Operation": {
       "type": "object",
       "properties": {
-        "account": {
-          "type": "string",
-          "title": "Реквизит: баланс или адрес крипто-кошелька"
+        "balance": {
+          "$ref": "#/definitions/types.balance.v1.Balance"
+        },
+        "cryptoWallet": {
+          "$ref": "#/definitions/types.cryptowallet.v1.CryptoWallet"
         },
         "money": {
           "$ref": "#/definitions/types.money.v1.Money",
-          "title": "Данные о сумме операции(amount, success_paid, fee)"
+          "title": "Данные о сумме операции(amount, success_paid, fee, так же валюта)"
         },
         "createdAt": {
           "type": "string",
@@ -366,6 +368,29 @@
     },
     "transaction.service.v1.responses.UpdateResponse": {
       "type": "object"
+    },
+    "types.balance.v1.Balance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "ID Счета - юзера"
+        },
+        "isFrozen": {
+          "type": "boolean",
+          "title": "Флаг - заморожен счет или нет"
+        }
+      },
+      "title": "Данные баланса"
+    },
+    "types.cryptowallet.v1.CryptoWallet": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        }
+      },
+      "title": "Данные о крипто-кошельке"
     },
     "types.money.v1.Money": {
       "type": "object",
